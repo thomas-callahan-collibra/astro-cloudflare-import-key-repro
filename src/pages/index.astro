@@ -1,0 +1,23 @@
+---
+// The `import` key below starts a line, so @astrojs/cloudflare's dev
+// dependency scan treats it as an import statement and hoists it out of
+// the options object. Run `pnpm dev` and look for
+// "Failed to run dependency scan" / "Expected `from` but found `:`".
+const tokens = import.meta.glob("../tokens.css", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+
+const label = "done";
+---
+
+<html lang="en">
+  <head>
+    <title>import key repro</title>
+  </head>
+  <body>
+    <p>{label}</p>
+    <pre>{Object.values(tokens)[0]}</pre>
+  </body>
+</html>
